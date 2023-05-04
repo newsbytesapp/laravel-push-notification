@@ -19,7 +19,7 @@ class LaravelPushNotificationServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('davibennun/laravel-push-notification');
+        $this->register('davibennun/laravel-push-notification');
     }
 
     /**
@@ -29,7 +29,7 @@ class LaravelPushNotificationServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app['pushNotification'] = $this->app->share(function($app)
+        $this->app['pushNotification'] = $this->app->singleton(PushNotification::class, function($app)
         {
             return new PushNotification();
         });
